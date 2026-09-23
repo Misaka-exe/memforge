@@ -1,0 +1,18 @@
+{
+  "n": 500,
+  "answerable_n": 470,
+  "answerable_accuracy": 0.0021,
+  "abstention_n": 30,
+  "abstention_accuracy": 0.0,
+  "overall_accuracy": 0.002,
+  "prompt_tokens": 977211,
+  "completion_tokens": 500,
+  "total_tokens": 977711,
+  "avg_latency_ms": 0.0,
+  "system": "hybrid",
+  "prompt_version": "v1.0",
+  "model": "mock",
+  "temperature": 0.0,
+  "max_tokens": null,
+  "total_run_seconds": 0.0
+}

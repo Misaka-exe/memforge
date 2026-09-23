@@ -1,0 +1,8 @@
+category,system,n,answerable_accuracy,abstention_accuracy,overall_accuracy
+abstention,naive_vector,30,,0.0,0.0
+knowledge-update,naive_vector,72,0.0139,,0.0139
+multi-session,naive_vector,121,0.0,,0.0
+single-session-assistant,naive_vector,56,0.0,,0.0
+single-session-preference,naive_vector,30,0.0,,0.0
+single-session-user,naive_vector,64,0.0,,0.0
+temporal-reasoning,naive_vector,127,0.0,,0.0

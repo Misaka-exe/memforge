@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Real benchmark data (downloaded, large)
+benchmarks/data/*.json
+benchmarks/data/*.jsonl
+!benchmarks/data/sample_longmemeval.jsonl
+
+# Env & secrets (never commit keys)
+.env
+
+# huggingface model cache (downloaded models)
+.hf_cache/
+
+# Logs
+*.log
+
+# Regenerable large intermediate artifacts.
+# Final result files (manifest.json / metrics.json / *.csv / figures/*.png)
+# ARE committed as research records; only the heavy regenerable pieces are
+# excluded so `git clone` stays light.
+results/longmemeval/stage5/_cache/
+results/longmemeval/stage5/retrieved/
+results/longmemeval/stage5/*/raw_qa.jsonl
+results/longmemeval/stage5_real/_cache/
+results/longmemeval/stage5_real/retrieved/
+results/longmemeval/stage5_real/*/raw_qa.jsonl
+results/longmemeval/stage5_real_smoke/
+
+# Temporary screenshots / scratch scripts
+*.png.tmp
+_patch_*.py

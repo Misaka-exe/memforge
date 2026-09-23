@@ -1,0 +1,22 @@
+{
+  "stage": "5.1",
+  "prompt_version": "v1.0",
+  "model": "deepseek-chat",
+  "temperature": 0.0,
+  "max_tokens": 256,
+  "top_k": 10,
+  "systems": [
+    "naive_vector"
+  ],
+  "data_file": "D:\\agentmemory\\memforge\\benchmarks\\data\\longmemeval_s_cleaned.json",
+  "provider": "OpenAICompatibleQAProvider",
+  "retrieval_config": {
+    "temporal": "session_date <= question_date",
+    "conflict_sim_threshold": 0.8,
+    "weights": {
+      "w_sem": 0.6,
+      "w_kw": 0.25,
+      "w_fresh": 0.15
+    }
+  }
+}

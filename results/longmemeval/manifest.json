@@ -1,0 +1,195 @@
+{
+  "dataset": "LongMemEval-S",
+  "file": "D:\\agentmemory\\memforge\\benchmarks\\data\\longmemeval_s_cleaned.json",
+  "embedding": "sentence-transformers",
+  "model": "all-MiniLM-L6-v2",
+  "systems": [
+    "naive_vector",
+    "vector_rerank",
+    "hybrid"
+  ],
+  "k_list": [
+    1,
+    5,
+    10
+  ],
+  "abstention_excluded_from_retrieval": true,
+  "abstention_count": 30,
+  "elapsed_seconds": 2369.7,
+  "metrics": {
+    "abstention_count": 30,
+    "naive_vector": {
+      "recall_any@1": 0.8681,
+      "recall_all@1": 0.3064,
+      "recall_any@5": 0.9468,
+      "recall_all@5": 0.6638,
+      "recall_any@10": 0.9723,
+      "recall_all@10": 0.8234,
+      "mrr": 0.9009,
+      "ndcg@10": 0.8328,
+      "num_questions": 470
+    },
+    "vector_rerank": {
+      "recall_any@1": 0.8426,
+      "recall_all@1": 0.3,
+      "recall_any@5": 0.934,
+      "recall_all@5": 0.6128,
+      "recall_any@10": 0.9553,
+      "recall_all@10": 0.783,
+      "mrr": 0.8839,
+      "ndcg@10": 0.8015,
+      "num_questions": 470
+    },
+    "hybrid": {
+      "recall_any@1": 0.9106,
+      "recall_all@1": 0.3277,
+      "recall_any@5": 0.9638,
+      "recall_all@5": 0.7277,
+      "recall_any@10": 0.9894,
+      "recall_all@10": 0.8574,
+      "mrr": 0.9331,
+      "ndcg@10": 0.8668,
+      "num_questions": 470
+    }
+  },
+  "by_category": {
+    "single-session-user": {
+      "naive_vector": {
+        "recall_any@5": 0.9375,
+        "recall_all@5": 0.9375,
+        "recall_any@1": 0.8594,
+        "mrr": 0.8837,
+        "n": 64
+      },
+      "vector_rerank": {
+        "recall_any@5": 0.9062,
+        "recall_all@5": 0.9062,
+        "recall_any@1": 0.8125,
+        "mrr": 0.8583,
+        "n": 64
+      },
+      "hybrid": {
+        "recall_any@5": 1.0,
+        "recall_all@5": 1.0,
+        "recall_any@1": 0.9531,
+        "mrr": 0.9693,
+        "n": 64
+      }
+    },
+    "single-session-assistant": {
+      "naive_vector": {
+        "recall_any@5": 1.0,
+        "recall_all@5": 1.0,
+        "recall_any@1": 0.9821,
+        "mrr": 0.9911,
+        "n": 56
+      },
+      "vector_rerank": {
+        "recall_any@5": 1.0,
+        "recall_all@5": 1.0,
+        "recall_any@1": 0.9821,
+        "mrr": 0.9911,
+        "n": 56
+      },
+      "hybrid": {
+        "recall_any@5": 1.0,
+        "recall_all@5": 1.0,
+        "recall_any@1": 1.0,
+        "mrr": 1.0,
+        "n": 56
+      }
+    },
+    "single-session-preference": {
+      "naive_vector": {
+        "recall_any@5": 0.8667,
+        "recall_all@5": 0.8667,
+        "recall_any@1": 0.7,
+        "mrr": 0.7918,
+        "n": 30
+      },
+      "vector_rerank": {
+        "recall_any@5": 0.8333,
+        "recall_all@5": 0.8333,
+        "recall_any@1": 0.7667,
+        "mrr": 0.8103,
+        "n": 30
+      },
+      "hybrid": {
+        "recall_any@5": 0.9333,
+        "recall_all@5": 0.9333,
+        "recall_any@1": 0.7667,
+        "mrr": 0.8261,
+        "n": 30
+      }
+    },
+    "multi-session": {
+      "naive_vector": {
+        "recall_any@5": 0.9587,
+        "recall_all@5": 0.4132,
+        "recall_any@1": 0.8595,
+        "mrr": 0.9024,
+        "n": 121
+      },
+      "vector_rerank": {
+        "recall_any@5": 0.9669,
+        "recall_all@5": 0.3802,
+        "recall_any@1": 0.8182,
+        "mrr": 0.877,
+        "n": 121
+      },
+      "hybrid": {
+        "recall_any@5": 0.9752,
+        "recall_all@5": 0.4876,
+        "recall_any@1": 0.9008,
+        "mrr": 0.9316,
+        "n": 121
+      }
+    },
+    "temporal-reasoning": {
+      "naive_vector": {
+        "recall_any@5": 0.9213,
+        "recall_all@5": 0.5354,
+        "recall_any@1": 0.8189,
+        "mrr": 0.8564,
+        "n": 127
+      },
+      "vector_rerank": {
+        "recall_any@5": 0.8898,
+        "recall_all@5": 0.4488,
+        "recall_any@1": 0.7795,
+        "mrr": 0.8324,
+        "n": 127
+      },
+      "hybrid": {
+        "recall_any@5": 0.9213,
+        "recall_all@5": 0.5984,
+        "recall_any@1": 0.8583,
+        "mrr": 0.8874,
+        "n": 127
+      }
+    },
+    "knowledge-update": {
+      "naive_vector": {
+        "recall_any@5": 0.9722,
+        "recall_all@5": 0.7222,
+        "recall_any@1": 0.9583,
+        "mrr": 0.9676,
+        "n": 72
+      },
+      "vector_rerank": {
+        "recall_any@5": 0.9722,
+        "recall_all@5": 0.6389,
+        "recall_any@1": 0.9444,
+        "mrr": 0.9564,
+        "n": 72
+      },
+      "hybrid": {
+        "recall_any@5": 0.9722,
+        "recall_all@5": 0.8194,
+        "recall_any@1": 0.9722,
+        "mrr": 0.9769,
+        "n": 72
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "num_instances": 500,
+  "unique_question_ids": 500,
+  "format": "json_array",
+  "question_type_distribution": {
+    "single-session-user": 70,
+    "multi-session": 133,
+    "single-session-preference": 30,
+    "temporal-reasoning": 133,
+    "knowledge-update": 78,
+    "single-session-assistant": 56
+  },
+  "missing_fields": {},
+  "abstention": {
+    "count": 30,
+    "ids_end_with_abs": 30,
+    "sentinel_examples": [
+      [
+        "answer_c6fd8ebd_abs"
+      ],
+      [
+        "answer_586de428_abs"
+      ],
+      [
+        "answer_e6143162_abs"
+      ]
+    ],
+    "sentinel_all": false
+  },
+  "sessions_per_question": {
+    "min": 38,
+    "max": 62,
+    "avg": 47.73
+  },
+  "answer_session_ids": {
+    "non_abs_with_gold": 470,
+    "avg_gold_sessions": 1.89
+  }
+}

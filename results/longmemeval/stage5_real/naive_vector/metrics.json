@@ -1,0 +1,56 @@
+{
+  "n": 500,
+  "answerable_n": 470,
+  "answerable_accuracy": 0.2957,
+  "abstention_n": 30,
+  "abstention_accuracy": 1.0,
+  "overall_accuracy": 0.338,
+  "prompt_tokens": 1051990,
+  "completion_tokens": 10307,
+  "total_tokens": 1062297,
+  "avg_latency_ms": 768.8,
+  "by_category": {
+    "single-session-user": {
+      "correct": 48,
+      "total": 64,
+      "accuracy": 0.75
+    },
+    "abstention": {
+      "correct": 30,
+      "total": 30,
+      "accuracy": 1.0
+    },
+    "multi-session": {
+      "correct": 8,
+      "total": 121,
+      "accuracy": 0.0661
+    },
+    "single-session-preference": {
+      "correct": 0,
+      "total": 30,
+      "accuracy": 0.0
+    },
+    "temporal-reasoning": {
+      "correct": 9,
+      "total": 127,
+      "accuracy": 0.0709
+    },
+    "knowledge-update": {
+      "correct": 27,
+      "total": 72,
+      "accuracy": 0.375
+    },
+    "single-session-assistant": {
+      "correct": 47,
+      "total": 56,
+      "accuracy": 0.8393
+    }
+  },
+  "system": "naive_vector",
+  "prompt_version": "v1.0",
+  "model": "deepseek-chat",
+  "temperature": 0.0,
+  "max_tokens": 256,
+  "total_run_seconds": 384.6,
+  "note": "Regenerated from raw_qa.jsonl (Stage 6-B fix: corrected checkpoint counter overflow)"
+}

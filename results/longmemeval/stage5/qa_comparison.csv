@@ -1,0 +1,2 @@
+system,n,answerable_n,answerable_accuracy,abstention_n,abstention_accuracy,overall_accuracy,prompt_tokens,completion_tokens,total_tokens,avg_latency_ms
+naive_vector,500,470,0.0021,30,0.0,0.002,789506,500,790006,0.0

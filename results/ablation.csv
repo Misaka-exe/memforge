@@ -1,0 +1,6 @@
+variant,recall@1,recall@5,mrr
+full,0.25,0.75,0.4375
+-utility,0.2188,0.5312,0.3594
+-confidence,0.25,0.75,0.4375
+-importance,0.2188,0.5312,0.3594
+-freshness,0.25,0.75,0.4375

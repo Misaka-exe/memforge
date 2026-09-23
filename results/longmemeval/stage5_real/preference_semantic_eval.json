@@ -1,0 +1,671 @@
+{
+  "naive_vector": {
+    "category": "single-session-preference",
+    "n": 30,
+    "avg_semantic_similarity": 0.3265,
+    "median_semantic_similarity": 0.4063,
+    "std_semantic_similarity": 0.2916,
+    "min_semantic_similarity": -0.132,
+    "max_semantic_similarity": 0.817,
+    "insufficient_count": 15,
+    "actual_answer_count": 15,
+    "details": [
+      {
+        "question_id": "8a2466db",
+        "gold_answer": "The user would prefer responses that suggest resources specifically tailored to Adobe Premiere Pro, ",
+        "model_answer": "Based on the retrieved memories, I can recommend the following resources for learning more about vid",
+        "semantic_similarity": 0.6283,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "06878be2",
+        "gold_answer": "The user would prefer suggestions of Sony-compatible accessories or high-quality photography gear th",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0463,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "75832dbd",
+        "gold_answer": "The user would prefer suggestions related to recent research papers, articles, or conferences that f",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0806,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "0edc2aef",
+        "gold_answer": "The user would prefer suggestions of hotels in Miami that offer great views, possibly of the ocean o",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0109,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "35a27287",
+        "gold_answer": "The user would prefer responses that suggest cultural events where they can practice their language ",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0473,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "32260d93",
+        "gold_answer": "The user would prefer recommendations for stand-up comedy specials on Netflix, especially those that",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.132,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "195a1a1b",
+        "gold_answer": "The user would prefer suggestions that involve relaxing activities that can be done in the evening, ",
+        "model_answer": "Based on the retrieved memories, some activities you can do in the evening include:\n\n- Reading a boo",
+        "semantic_similarity": 0.6174,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "afdc33df",
+        "gold_answer": "The user would prefer responses that acknowledge and build upon their existing efforts to organize t",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0647,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "caf03d32",
+        "gold_answer": "The user would prefer responses that provide tips and advice specifically tailored to their slow coo",
+        "model_answer": "Based on the retrieved memories, here are some slow cooker recipe ideas and tips that could help you",
+        "semantic_similarity": 0.5605,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "54026fce",
+        "gold_answer": "The user would prefer responses that acknowledge their desire for social interaction and collaborati",
+        "model_answer": "Here are a few suggestions to stay connected with your colleagues while working from home:\n\n1. **Vir",
+        "semantic_similarity": 0.5708,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "06f04340",
+        "gold_answer": "The user would prefer dinner suggestions that incorporate their homegrown cherry tomatoes and herbs ",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0021,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "6b7dfb22",
+        "gold_answer": "The user would prefer responses that build upon their existing sources of inspiration, such as revis",
+        "model_answer": "Based on the retrieved memories, I can offer a few ideas that might help you find new inspiration:\n\n",
+        "semantic_similarity": 0.6394,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "1a1907b4",
+        "gold_answer": "Considering their mixology class background, the user would prefer cocktail suggestions that build u",
+        "model_answer": "Based on the retrieved memories, there are several summer cocktail suggestions that feature Hendrick",
+        "semantic_similarity": 0.6626,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "09d032c9",
+        "gold_answer": "The user would prefer responses that build upon their previous mention of purchasing a portable powe",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0406,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "38146c39",
+        "gold_answer": "The user would prefer responses that build upon their previous experimentation with turbinado sugar,",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0971,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "d24813b1",
+        "gold_answer": "The user would prefer baking suggestions that take into account their previous success with the lemo",
+        "model_answer": "Based on the retrieved memories, you could bake chocolate chip cookies for your gathering. Memory [9",
+        "semantic_similarity": 0.3595,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "57f827a0",
+        "gold_answer": "The user would prefer responses that take into account their existing plans to replace the bedroom d",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0227,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "95228167",
+        "gold_answer": "The user would prefer responses that highlight the differences between Fender Stratocaster and Gibso",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0948,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "505af2f5",
+        "gold_answer": "The user would prefer responses that suggest variations on their existing almond milk, vanilla extra",
+        "model_answer": "Based on the retrieved memories, here are some recommendations for a new coffee creamer recipe:\n\n- S",
+        "semantic_similarity": 0.5506,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "75f70248",
+        "gold_answer": "The user would prefer responses that consider the potential impact of their cat, Luna, and her shedd",
+        "model_answer": "Based on the retrieved memories, your living room could be a factor if it has dust, pet dander, or p",
+        "semantic_similarity": 0.6351,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "d6233ab6",
+        "gold_answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0092,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "1da05512",
+        "gold_answer": "The user would prefer responses that take into account their current home network storage capacity i",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.1306,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "fca70973",
+        "gold_answer": "The user would prefer theme park suggestions that cater to their interest in both thrill rides and s",
+        "model_answer": "Based on the retrieved memories, there are several theme park events you could consider for another ",
+        "semantic_similarity": 0.7064,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "b6025781",
+        "gold_answer": "The user would prefer responses that suggest healthy meal prep recipes, especially those that incorp",
+        "model_answer": "Based on the retrieved memories, here are some meal prep suggestions:\n\n**Mexican-Inspired Dishes:**\n",
+        "semantic_similarity": 0.5944,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "a89d7624",
+        "gold_answer": "The user would prefer responses that take into account their previous experience in Denver, specific",
+        "model_answer": "Based on the retrieved memories, here are some suggestions for things to do in Denver:\n\n**Music Venu",
+        "semantic_similarity": 0.5341,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "b0479f84",
+        "gold_answer": "The user would prefer documentary recommendations that are similar in style and theme to 'Our Planet",
+        "model_answer": "Based on the provided memories, here are some documentary recommendations:\n\n**Nature and Wildlife:**",
+        "semantic_similarity": 0.5203,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "1d4e3b97",
+        "gold_answer": "The user would prefer responses that reference specific details from their previous interactions, su",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.2514,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "07b6f563",
+        "gold_answer": "The user would prefer suggestions of accessories that are compatible with an iPhone 13 Pro, such as ",
+        "model_answer": "Based on the retrieved memories, here are some useful accessories for your phone:\n\n**Phone wallet ca",
+        "semantic_similarity": 0.817,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "1c0ddc50",
+        "gold_answer": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the",
+        "model_answer": "Based on the retrieved memories, here are some activities you can do during your commute to work:\n\n*",
+        "semantic_similarity": 0.485,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "0a34ad58",
+        "gold_answer": "The user would prefer responses that utilize their existing resources, such as their Suica card and ",
+        "model_answer": "Based on the retrieved memories, here are some helpful tips for getting around Tokyo:\n\n- **Use a Sui",
+        "semantic_similarity": 0.453,
+        "is_insufficient": false
+      }
+    ]
+  },
+  "hybrid": {
+    "category": "single-session-preference",
+    "n": 30,
+    "avg_semantic_similarity": 0.3647,
+    "median_semantic_similarity": 0.4925,
+    "std_semantic_similarity": 0.2816,
+    "min_semantic_similarity": -0.132,
+    "max_semantic_similarity": 0.7876,
+    "insufficient_count": 14,
+    "actual_answer_count": 16,
+    "details": [
+      {
+        "question_id": "8a2466db",
+        "gold_answer": "The user would prefer responses that suggest resources specifically tailored to Adobe Premiere Pro, ",
+        "model_answer": "Based on the retrieved memories, here are some resources where you can learn more about video editin",
+        "semantic_similarity": 0.6699,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "06878be2",
+        "gold_answer": "The user would prefer suggestions of Sony-compatible accessories or high-quality photography gear th",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0463,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "75832dbd",
+        "gold_answer": "The user would prefer suggestions related to recent research papers, articles, or conferences that f",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0806,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "0edc2aef",
+        "gold_answer": "The user would prefer suggestions of hotels in Miami that offer great views, possibly of the ocean o",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0109,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "35a27287",
+        "gold_answer": "The user would prefer responses that suggest cultural events where they can practice their language ",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0473,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "32260d93",
+        "gold_answer": "The user would prefer recommendations for stand-up comedy specials on Netflix, especially those that",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.132,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "195a1a1b",
+        "gold_answer": "The user would prefer suggestions that involve relaxing activities that can be done in the evening, ",
+        "model_answer": "Based on the retrieved memories, here are some activities you can do in the evening, particularly to",
+        "semantic_similarity": 0.5759,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "afdc33df",
+        "gold_answer": "The user would prefer responses that acknowledge and build upon their existing efforts to organize t",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0647,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "caf03d32",
+        "gold_answer": "The user would prefer responses that provide tips and advice specifically tailored to their slow coo",
+        "model_answer": "Based on the retrieved memories, I can offer some slow cooker recipe ideas and tips, though the memo",
+        "semantic_similarity": 0.4522,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "54026fce",
+        "gold_answer": "The user would prefer responses that acknowledge their desire for social interaction and collaborati",
+        "model_answer": "Based on the retrieved memories, here are some suggestions for staying connected with your colleague",
+        "semantic_similarity": 0.5919,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "06f04340",
+        "gold_answer": "The user would prefer dinner suggestions that incorporate their homegrown cherry tomatoes and herbs ",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0021,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "6b7dfb22",
+        "gold_answer": "The user would prefer responses that build upon their existing sources of inspiration, such as revis",
+        "model_answer": "Based on the retrieved memories, here are some ideas that might help you find new inspiration for yo",
+        "semantic_similarity": 0.5957,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "1a1907b4",
+        "gold_answer": "Considering their mixology class background, the user would prefer cocktail suggestions that build u",
+        "model_answer": "Based on the retrieved memories, there are several cocktail suggestions that feature Hendrick's gin,",
+        "semantic_similarity": 0.5396,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "09d032c9",
+        "gold_answer": "The user would prefer responses that build upon their previous mention of purchasing a portable powe",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0406,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "38146c39",
+        "gold_answer": "The user would prefer responses that build upon their previous experimentation with turbinado sugar,",
+        "model_answer": "Based on the retrieved memories, here is some advice for adding something extra to your chocolate ch",
+        "semantic_similarity": 0.6253,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "d24813b1",
+        "gold_answer": "The user would prefer baking suggestions that take into account their previous success with the lemo",
+        "model_answer": "Based on the retrieved memories, here are some baking ideas for your gathering:\n\n- **Chocolate chip ",
+        "semantic_similarity": 0.4313,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "57f827a0",
+        "gold_answer": "The user would prefer responses that take into account their existing plans to replace the bedroom d",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0227,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "95228167",
+        "gold_answer": "The user would prefer responses that highlight the differences between Fender Stratocaster and Gibso",
+        "model_answer": "Based on the retrieved memories, here are some tips on what to look for in a new guitar:\n\n- Consider",
+        "semantic_similarity": 0.7184,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "505af2f5",
+        "gold_answer": "The user would prefer responses that suggest variations on their existing almond milk, vanilla extra",
+        "model_answer": "Based on the retrieved memories, here are some recommendations for a homemade coffee creamer recipe:",
+        "semantic_similarity": 0.632,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "75f70248",
+        "gold_answer": "The user would prefer responses that consider the potential impact of their cat, Luna, and her shedd",
+        "model_answer": "Based on the retrieved memories, your living room could potentially be contributing to your sneezing",
+        "semantic_similarity": 0.5856,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "d6233ab6",
+        "gold_answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0092,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "1da05512",
+        "gold_answer": "The user would prefer responses that take into account their current home network storage capacity i",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.1306,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "fca70973",
+        "gold_answer": "The user would prefer theme park suggestions that cater to their interest in both thrill rides and s",
+        "model_answer": "Based on the retrieved memories, there are several upcoming theme park events you might enjoy:\n\n1. *",
+        "semantic_similarity": 0.6819,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "b6025781",
+        "gold_answer": "The user would prefer responses that suggest healthy meal prep recipes, especially those that incorp",
+        "model_answer": "Based on the retrieved memories, here are some meal prep suggestions:\n\n- **Lentil bolognese and quin",
+        "semantic_similarity": 0.5776,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "a89d7624",
+        "gold_answer": "The user would prefer responses that take into account their previous experience in Denver, specific",
+        "model_answer": "Based on the retrieved memories, here are some Denver suggestions:\n\n**Music venues:**\n- Red Rocks Pa",
+        "semantic_similarity": 0.5085,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "b0479f84",
+        "gold_answer": "The user would prefer documentary recommendations that are similar in style and theme to 'Our Planet",
+        "model_answer": "Based on the retrieved memories, here are some documentary recommendations:\n\n**Nature and Wildlife:*",
+        "semantic_similarity": 0.5233,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "1d4e3b97",
+        "gold_answer": "The user would prefer responses that reference specific details from their previous interactions, su",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.2514,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "07b6f563",
+        "gold_answer": "The user would prefer suggestions of accessories that are compatible with an iPhone 13 Pro, such as ",
+        "model_answer": "Based on the retrieved memories, I can suggest the following accessories for your phone:\n\n**Phone wa",
+        "semantic_similarity": 0.7876,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "1c0ddc50",
+        "gold_answer": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the",
+        "model_answer": "Based on the retrieved memories, here are some activities you can do during your commute to work:\n\n*",
+        "semantic_similarity": 0.492,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "0a34ad58",
+        "gold_answer": "The user would prefer responses that utilize their existing resources, such as their Suica card and ",
+        "model_answer": "Based on the retrieved memories, here are some helpful tips for getting around Tokyo:\n\n**Use a Suica",
+        "semantic_similarity": 0.4931,
+        "is_insufficient": false
+      }
+    ]
+  },
+  "full": {
+    "category": "single-session-preference",
+    "n": 30,
+    "avg_semantic_similarity": 0.2923,
+    "median_semantic_similarity": 0.191,
+    "std_semantic_similarity": 0.2903,
+    "min_semantic_similarity": -0.132,
+    "max_semantic_similarity": 0.8172,
+    "insufficient_count": 16,
+    "actual_answer_count": 14,
+    "details": [
+      {
+        "question_id": "8a2466db",
+        "gold_answer": "The user would prefer responses that suggest resources specifically tailored to Adobe Premiere Pro, ",
+        "model_answer": "Based on the retrieved memories, here are some resources where you can learn more about video editin",
+        "semantic_similarity": 0.6434,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "06878be2",
+        "gold_answer": "The user would prefer suggestions of Sony-compatible accessories or high-quality photography gear th",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0463,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "75832dbd",
+        "gold_answer": "The user would prefer suggestions related to recent research papers, articles, or conferences that f",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0806,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "0edc2aef",
+        "gold_answer": "The user would prefer suggestions of hotels in Miami that offer great views, possibly of the ocean o",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0109,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "35a27287",
+        "gold_answer": "The user would prefer responses that suggest cultural events where they can practice their language ",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0473,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "32260d93",
+        "gold_answer": "The user would prefer recommendations for stand-up comedy specials on Netflix, especially those that",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.132,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "195a1a1b",
+        "gold_answer": "The user would prefer suggestions that involve relaxing activities that can be done in the evening, ",
+        "model_answer": "Based on the retrieved memories, here are some activities you can do in the evening to wind down and",
+        "semantic_similarity": 0.5832,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "afdc33df",
+        "gold_answer": "The user would prefer responses that acknowledge and build upon their existing efforts to organize t",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0647,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "caf03d32",
+        "gold_answer": "The user would prefer responses that provide tips and advice specifically tailored to their slow coo",
+        "model_answer": "Based on the retrieved memories, here are some slow cooker recipe ideas and tips that could help you",
+        "semantic_similarity": 0.5321,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "54026fce",
+        "gold_answer": "The user would prefer responses that acknowledge their desire for social interaction and collaborati",
+        "model_answer": "Based on the retrieved memories, here are some suggestions for staying connected with your colleague",
+        "semantic_similarity": 0.5079,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "06f04340",
+        "gold_answer": "The user would prefer dinner suggestions that incorporate their homegrown cherry tomatoes and herbs ",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0021,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "6b7dfb22",
+        "gold_answer": "The user would prefer responses that build upon their existing sources of inspiration, such as revis",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0368,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "1a1907b4",
+        "gold_answer": "Considering their mixology class background, the user would prefer cocktail suggestions that build u",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": -0.0477,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "09d032c9",
+        "gold_answer": "The user would prefer responses that build upon their previous mention of purchasing a portable powe",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0406,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "38146c39",
+        "gold_answer": "The user would prefer responses that build upon their previous experimentation with turbinado sugar,",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0971,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "d24813b1",
+        "gold_answer": "The user would prefer baking suggestions that take into account their previous success with the lemo",
+        "model_answer": "Based on the retrieved memories, you could bake chewy chocolate chip cookies for your gathering. The",
+        "semantic_similarity": 0.3759,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "57f827a0",
+        "gold_answer": "The user would prefer responses that take into account their existing plans to replace the bedroom d",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0227,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "95228167",
+        "gold_answer": "The user would prefer responses that highlight the differences between Fender Stratocaster and Gibso",
+        "model_answer": "Based on the retrieved memories, here are some tips on what to look for in a new guitar:\n\n- Consider",
+        "semantic_similarity": 0.8172,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "505af2f5",
+        "gold_answer": "The user would prefer responses that suggest variations on their existing almond milk, vanilla extra",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0487,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "75f70248",
+        "gold_answer": "The user would prefer responses that consider the potential impact of their cat, Luna, and her shedd",
+        "model_answer": "Based on the retrieved memories, your living room could potentially be contributing to your sneezing",
+        "semantic_similarity": 0.6153,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "d6233ab6",
+        "gold_answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.0092,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "1da05512",
+        "gold_answer": "The user would prefer responses that take into account their current home network storage capacity i",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.1306,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "fca70973",
+        "gold_answer": "The user would prefer theme park suggestions that cater to their interest in both thrill rides and s",
+        "model_answer": "Based on the retrieved memories, there are several theme park weekend suggestions, especially for up",
+        "semantic_similarity": 0.6956,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "b6025781",
+        "gold_answer": "The user would prefer responses that suggest healthy meal prep recipes, especially those that incorp",
+        "model_answer": "Based on the retrieved memories, here are some meal prep suggestions:\n\n**Lentil Bolognese and Quinoa",
+        "semantic_similarity": 0.5268,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "a89d7624",
+        "gold_answer": "The user would prefer responses that take into account their previous experience in Denver, specific",
+        "model_answer": "Based on the retrieved memories, here are some suggestions for your trip to Denver:\n\n**Music Venues:",
+        "semantic_similarity": 0.5541,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "b0479f84",
+        "gold_answer": "The user would prefer documentary recommendations that are similar in style and theme to 'Our Planet",
+        "model_answer": "Based on the retrieved memories, here are some documentary recommendations:\n\n**Nature and Wildlife:*",
+        "semantic_similarity": 0.5233,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "1d4e3b97",
+        "gold_answer": "The user would prefer responses that reference specific details from their previous interactions, su",
+        "model_answer": "INSUFFICIENT_INFORMATION",
+        "semantic_similarity": 0.2514,
+        "is_insufficient": true
+      },
+      {
+        "question_id": "07b6f563",
+        "gold_answer": "The user would prefer suggestions of accessories that are compatible with an iPhone 13 Pro, such as ",
+        "model_answer": "Based on the retrieved memories, I can suggest the following accessories for your phone:\n\n**Phone wa",
+        "semantic_similarity": 0.7895,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "1c0ddc50",
+        "gold_answer": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the",
+        "model_answer": "Based on the retrieved memories, here are some activities you can do during your commute to work:\n\n*",
+        "semantic_similarity": 0.492,
+        "is_insufficient": false
+      },
+      {
+        "question_id": "0a34ad58",
+        "gold_answer": "The user would prefer responses that utilize their existing resources, such as their Suica card and ",
+        "model_answer": "Based on the retrieved memories, here are some helpful tips for getting around Tokyo:\n\n**Use a Suica",
+        "semantic_similarity": 0.5195,
+        "is_insufficient": false
+      }
+    ]
+  }
+}
