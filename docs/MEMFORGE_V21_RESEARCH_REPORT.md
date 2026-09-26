@@ -75,7 +75,7 @@ V2.1 解决这三个问题，从 "evidence-grounded answering" 升级为 "eviden
 
 ---
 
-## 4. Gate Calibration Results
+## 4. Gate Calibration Results (Detailed Audit)
 
 ### 4.1 Feature Distribution
 | 分组 | n | top1 mean | top1 std | diff |
@@ -90,55 +90,81 @@ V2.1 解决这三个问题，从 "evidence-grounded answering" 升级为 "eviden
 - 这意味着所有问题的 top1_score > 0.1，因此阈值 0.1 等于不过滤
 - **单阈值 top1_score 完全无法区分 answerable 和 abstention**
 
-### 4.3 MultiFeatureGate
+### 4.3 MultiFeatureGate (Detailed Audit)
 - 最优参数：top1=0.3, top5=0.2（F1=0.934）
-- Coverage: 0.984（8/500 被 INSUFFICIENT 拦截）
-- Answerable Recall: 0.987
-- Abstention Precision: 0.25（8 个被拦截中只有 2 个是真正 abstention）
-- Abstention Accuracy: 0.067（30 个 abstention 中只有 2 个被正确拦截）
+- **逐题审计结果**：
 
-### 4.4 Gate Finding
-**当前 retrieval features 不足以可靠地做 sufficiency gate。** 这是一个重要的 negative result：
-- 单阈值完全无效
-- 多特征 gate 只能微弱区分，且大部分拦截是错误的（abstention precision=0.25）
-- 需要更好的 retrieval features（如 query-document interaction features）或独立 validation set
+| 指标 | 值 |
+|------|-----|
+| Total intercepted | 8/500 |
+| Answerable wrongly intercepted (FP) | 6 |
+| Abstention correctly intercepted (TP) | 2 |
+| Abstention passed through (FN) | 28/30 |
+| Answerable correctly passed (TN) | 464 |
+| Abstention Precision | 0.250 |
+| Abstention Recall | 0.067 |
+| Abstention F1 | 0.105 |
+
+### 4.4 Threshold Provenance
+- MultiFeatureGate 通过 grid search 在**同一 500 题**上校准
+- 最优 F1=0.934 是在 answerable prediction 上计算的，不是 abstention detection
+- **警告**：calibration 和 evaluation 在同一数据集上 = evaluation-set tuning
+- 这是 EXPLORATORY，不是无偏评估
+
+### 4.5 Risk-Coverage Curve (ThresholdGate)
+| Threshold | Coverage | Risk (1-Sel.Acc) | Selective Accuracy | Intercepted |
+|-----------|----------|-------------------|--------------------|-------------|
+| 0.10 | 1.000 | 0.596 | 0.404 | 0 |
+| 0.34 | 0.930 | 0.589 | 0.411 | 35 |
+| 0.50 | 0.562 | 0.566 | 0.434 | 219 |
+| 0.66 | 0.202 | 0.406 | 0.594 | 399 |
+| 0.74 | 0.082 | 0.244 | 0.756 | 459 |
+
+Risk-coverage trade-off 存在：提高阈值可提升 selective accuracy（0.404→0.756），但 coverage 急剧下降（1.0→0.082）。当前信号质量下，需要拦截 90%+ 的问题才能显著降低错误率。
+
+### 4.6 Gate Conclusion
+**Calibrated retrieval-score gating is insufficient for evidence sufficiency on LongMemEval-S.**
+
+这不是简单的"threshold 不好"，而是对 V2 Gate 假设的反证：**Retrieval relevance is not equivalent to evidence sufficiency.** 检索相关性高不代表证据充分，检索相关性低也不代表证据不足。当前的 retrieval features（top1, top5_mean, margin, n_retrieved）无法可靠区分。
 
 ---
 
 ## 5. Temporal Stress Benchmark Results
 
-| System | Recall@1 | Recall@5 | FLR | ELR |
-|--------|----------|----------|-----|-----|
-| Hard Filter | 0.833 | 0.833 | **0.000** | 0.167 |
-| No Temporal | 0.500 | 1.000 | 0.250 | **0.000** |
-| Soft Decay | **0.833** | **1.000** | 0.250 | **0.000** |
+### 5.1 FLR Definition Fix
+原始 FLR=0.250 包含了 T3 Future 类别的 gold future memory（在 T3 中，future memory 是正确答案，不应算 leakage）。修正后只在 current-question categories（current/historical/update/contradictory/future_contamination，共 100 题）上计算：
 
-### 5.1 Key Findings
+| System | R@1 | R@5 | FLR (original) | FLR (corrected) | ELR |
+|--------|-----|-----|----------------|-----------------|-----|
+| Hard Filter | 0.833 | 0.833 | 0.000 | **0.000** | 0.167 |
+| No Temporal | 0.500 | 1.000 | 0.250 | 0.200 | **0.000** |
+| Soft Decay | **0.833** | **1.000** | 0.250 | 0.200 | **0.000** |
+
+### 5.2 Key Findings
 1. **Hard Filter**: 零未来泄漏（FLR=0），但 16.7% gold evidence 被误删（ELR=0.167）——这正是 V1 的问题
-2. **No Temporal**: 零证据损失，但 25% 未来泄漏，且 Recall@1 只有 0.5（排序差）
-3. **Soft Decay**: 零证据损失 + Recall@5=1.0 + Recall@1=0.833（和 Hard Filter 一样好），但 FLR=0.25（仍有未来泄漏）
+2. **No Temporal**: 零证据损失，但 20% 未来泄漏，且 Recall@1 只有 0.5（排序差）
+3. **Soft Decay**: 零证据损失 + Recall@5=1.0 + Recall@1=0.833（和 Hard Filter 一样好），但 FLR=0.200（仍有未来泄漏）
 
-### 5.2 Trade-off
+### 5.3 Pareto Analysis (Soft Decay Floor Sweep)
+Sweep floor 参数 [0.0, 0.01, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]：
+
+**所有 floor 参数结果完全相同**（ELR=0, FLR_corr=0.200, R@1=0.833）。
+
+原因：当前 synthetic benchmark 每个 case 只有 2-3 个 memory，top-5 总是包含所有 memory，因此 floor 不影响排序。**当前 benchmark 太简单，无法区分不同的 decay 参数。** 需要更复杂的 benchmark（更多 memory，top-K < total）才能验证 floor 的影响。
+
+### 5.4 Trade-off
 ```
-Evidence Preservation ↔ Future Leakage
-Hard Filter:    0 loss, 0 leakage (but loses gold)
-No Temporal:    0 loss, high leakage, bad ranking
-Soft Decay:     0 loss, high leakage, good ranking ← best balance
+Evidence Loss ↔ Future Leakage
+Hard Filter:    0.167 loss, 0.000 leakage (but loses gold evidence)
+No Temporal:    0.000 loss, 0.200 leakage, bad ranking (R@1=0.5)
+Soft Decay:     0.000 loss, 0.200 leakage, good ranking (R@1=0.833) ← best balance
 ```
 
-**Soft Decay 在保留证据的同时达到了和 Hard Filter 一样的 Recall@1**，证明了 soft temporal scoring 的价值。但 FLR=0.25 说明未来泄漏问题仍未完全解决。
-
-### 5.3 By Category (Soft Decay)
-- Current: Recall@1=1.0
-- Historical: Recall@1=1.0
-- Future: Recall@1=0.0（future fact 在 query time 之前，soft decay 降权到最低）
-- Update: Recall@1=1.0
-- Contradictory: Recall@1=1.0
-- Future Contamination: Recall@1=1.0（current fact 排第一）
+**Soft Decay 在保留证据的同时达到了和 Hard Filter 一样的 Recall@1**，证明了 soft temporal scoring 的价值。但 FLR=0.200 说明未来泄漏问题仍未完全解决，且当前 benchmark 不足以找到 Pareto-efficient 参数。
 
 ---
 
-## 6. Reconsolidation Design
+## 6. Reconsolidation Design + Synthetic Causal Validation
 
 ### 6.1 Data Model
 ```
@@ -163,9 +189,37 @@ Memory B (v2)
 - 有新证据支持的字段 → UPDATE
 
 ### 6.3 Slot-Level Update
-不重写整个 memory，仅修改新证据支持的字段。当前实现支持 location/job/preference/relationship/name 五类 slot。
+不重写整个 memory，仅修改新证据支持的字段。当前实现支持 location/job/preference/relationship/name 五类 slot（keyword-based detection）。
 
-### 6.4 Evidence Preservation
+### 6.4 Synthetic Causal Benchmark
+**设计**：30 cases × 5 queries。Initial memory 有 4 slots（name/city/job/hobby），新证据只更新 city slot。测试：
+- Current Recall: 新版本中 current city 正确
+- Historical Recall: 旧版本通过 lineage 仍可检索
+- Unchanged Slot Recall: job/hobby/name 在新版本中保留
+- False Update Rate: 错误更新的 slot 比例
+- Lineage Completeness: lineage_id/version/derived_from 完整
+
+| Metric | No Reconsolidation | Reconsolidation |
+|--------|-------------------|-----------------|
+| Current Recall | 0.000 | **1.000** |
+| Historical Recall | 0.000 | **1.000** |
+| Unchanged Slot Recall | 1.000 | **1.000** |
+| False Update Rate | 0.000 | **0.000** |
+| Lineage Completeness | 0.000 | **1.000** |
+| Overall Accuracy | 0.600 | **1.000** |
+
+**决策分布**：30/30 UPDATE（confidence=0.9 > min_confidence=0.6，且 location slot 匹配）。
+
+### 6.5 Causal Result Interpretation
+Reconsolidation infrastructure 在 synthetic causal test 上表现完美：
+- ✅ 正确更新 target slot (city)
+- ✅ 未破坏任何 unchanged slot (job/hobby/name)
+- ✅ 保留 historical version (通过 lineage 可检索)
+- ✅ 所有 30 cases 决策正确
+
+**但这是 synthetic + keyword-based slot detection 的结果。真实 LLM 效果（slot extraction、confidence calibration、adaptive memory）尚未验证。** 当前状态：Implemented, Unit-tested, Synthetic-causal validated, Real-world effectiveness: unvalidated.
+
+### 6.6 Evidence Preservation
 - `compute_evidence_preservation_rate()`: gold evidence 仍可检索的比例
 - `compute_evidence_loss_rate()`: 1 - EPR
 - Lineage 确保即使旧 memory 被 DEPRECATED，仍可通过 lineage_id 追溯
@@ -189,34 +243,36 @@ Memory B (v2)
 
 ## 8. Key Findings
 
-### Finding 1: Retrieval features have weak separability for sufficiency gate
-Answerable vs abstention 的 top1_score 差异仅 0.089（std≈0.14），单阈值完全无效，多特征 gate 的 abstention precision 仅 0.25。**当前 retrieval signal 不足以可靠区分"证据充分"和"证据不足"。**
+### Finding 1: Retrieval relevance ≠ evidence sufficiency
+Gate 详细审计证明：Calibrated retrieval-score gating is insufficient for evidence sufficiency on LongMemEval-S. MultiFeatureGate 只拦截 8/500，其中 6 个是 answerable 误拦（precision=0.25），28/30 abstention 被放行（recall=0.067, F1=0.105）。单阈值完全无效（最优=0.1 等于不过滤）。Risk-coverage curve 显示需要拦截 90%+ 问题才能显著降低错误率。**这是对 V2 Gate 假设的反证，不是简单的 threshold 问题。**
 
 ### Finding 2: Soft temporal decay preserves evidence while maintaining retrieval quality
-Temporal Stress Benchmark 证明 Soft Decay 在 ELR=0 的同时达到 Recall@1=0.833（与 Hard Filter 相同），Recall@5=1.0。但 FLR=0.25 说明未来泄漏仍需进一步控制。
+Temporal Stress Benchmark（修正 FLR 定义后）证明 Soft Decay 在 ELR=0 的同时达到 R@1=0.833（与 Hard Filter 相同），R@5=1.0。但 FLR=0.200 说明未来泄漏仍存在。Pareto 分析发现当前 synthetic benchmark 太简单（每 case 2-3 memory，top-5 全包含），无法区分不同 decay 参数。
 
-### Finding 3: Reconsolidation infrastructure is ready but needs real LLM validation
-Lineage/versioning/slot-level update 框架已完成，单元测试覆盖。但真实效果需要在 LongMemEval-S 上用真实 LLM 验证。
+### Finding 3: Reconsolidation infrastructure validated on synthetic causal test
+Synthetic Causal Benchmark（30 cases × 5 queries）证明 slot-level reconsolidation 正确更新 target slot（current recall=1.0）、保留 unchanged slots（unchanged recall=1.0）、保留 historical version（historical recall=1.0）、零错误更新（false update rate=0）。**但真实 LLM 效果尚未验证。**
 
 ### Finding 4: V1's negative result guided V2.1's design
 V1 发现的 deterministic lifecycle 负贡献直接指导了 V2.1：
-- Temporal 硬过滤 → Soft Decay
+- Temporal 硬过滤 → Soft Decay（ELR=0 on stress test）
 - Cosine conflict → 4-level uncertainty + ABSTAIN on low confidence
-- 无 anti-hallucination → Calibrated Gate（虽然当前信号不足）
-- 无 memory update → Evidence-Grounded Reconsolidation
+- 无 anti-hallucination → Calibrated Gate（发现 retrieval ≠ sufficiency）
+- 无 memory update → Evidence-Grounded Reconsolidation（causal validated）
 
 ---
 
 ## 9. Limitations
 
-1. **Gate calibration 是 exploratory**：在同一 500 题上校准和评估，无独立 validation set
-2. **Gate 信号不足**：当前 retrieval features 弱区分度，需要更好的特征或模型
-3. **Temporal Stress Benchmark 是 synthetic**：与真实 LongMemEval-S 的关系需要进一步验证
-4. **Reconsolidation 未在真实数据上验证**：slot detection 是 keyword-based，需要 LLM 提升
-5. **Mock pipeline 结果不是研究结果**：真实 LongMemEval-S 500 题实验待执行
-6. **FLR=0.25 未解决**：Soft Decay 保留了 future memory，仍有泄漏
-7. **单一 embedding model**：all-MiniLM-L6-v2，结果可能因模型不同而变化
-8. **无统计显著性检验**：所有比较均为观察性
+1. **Gate calibration 是 exploratory**：在同一 500 题上校准和评估，无独立 validation set；MultiFeatureGate F1=0.105 for abstention detection
+2. **Gate 信号不足**：当前 retrieval features 弱区分度，需要更好的特征（cross-encoder, query-doc interaction）或模型
+3. **Temporal Stress Benchmark 是 synthetic**：每 case 仅 2-3 个 memory，top-5 全包含，无法区分 decay 参数；需要更复杂的 benchmark
+4. **FLR 定义已修正**：原始 FLR=0.250 包含 T3 Future 的 gold memory，修正后 FLR=0.200（仅 current-question categories）
+5. **Reconsolidation slot detection 是 keyword-based**：synthetic causal test 表现完美，但真实 LLM 效果未验证
+6. **Mock pipeline 结果不是研究结果**：真实 LongMemEval-S 500 题实验待执行
+7. **Reconsolidation 真实效果未验证**：synthetic causal validated ≠ real-world effectiveness
+8. **单一 embedding model**：all-MiniLM-L6-v2，结果可能因模型不同而变化
+9. **无统计显著性检验**：所有比较均为观察性
+10. **Risk-coverage curve 基于 ThresholdGate**：MultiFeatureGate 的 risk-coverage 未单独分析
 
 ---
 
@@ -280,11 +336,17 @@ V1 发现的 deterministic lifecycle 负贡献直接指导了 V2.1：
 | 模块 | 状态 | 验证级别 |
 |------|------|----------|
 | Retrieval Score Normalization | ✅ Complete | Unit test + 500题导出 |
-| Calibrated Sufficiency Gate | ✅ Complete | Unit test + exploratory calibration |
-| Temporal Stress Benchmark | ✅ Complete | Unit test + 120 synthetic cases |
-| Evidence-Grounded Reconsolidation | ✅ Complete | Unit test (mock, no real LLM) |
+| Calibrated Sufficiency Gate | ✅ Complete | Unit test + detailed audit (8/500, F1=0.105) |
+| Temporal Stress Benchmark | ✅ Complete | Unit test + 120 synthetic cases + FLR fix + Pareto |
+| Evidence-Grounded Reconsolidation | ✅ Complete | Unit test + synthetic causal benchmark (30 cases) |
 | Unified Adaptive Pipeline | ✅ Complete | Unit test + 50题 mock end-to-end |
+| Research Audit | ✅ Complete | Gate audit + Temporal audit + Recon causal benchmark |
 | Real LongMemEval-S Experiment | ⏳ Pending | 需要真实 API |
+
+### 新增审计结果文件
+- `results/longmemeval/stage_v21/gate_audit.json` — Gate 详细审计（逐题 decision, confusion matrix, risk-coverage curve）
+- `results/v21/temporal/stress_audit.json` — Temporal FLR 修正 + Pareto 分析
+- `results/v21/reconsolidation/causal_benchmark.json` — Reconsolidation causal benchmark
 
 ---
 

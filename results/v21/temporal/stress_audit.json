@@ -1,0 +1,256 @@
+{
+  "n_total": 120,
+  "n_per_category": 20,
+  "flr_definition_fix": {
+    "original_flr_includes_t3_future_gold": true,
+    "corrected_flr_excludes_t3_future": true,
+    "t3_future_note": "In T3 Future category, the future memory IS the gold answer. Counting it as leakage is incorrect."
+  },
+  "hard_filter": {
+    "original_flr": 0.0,
+    "corrected_flr": {
+      "n_current_questions": 100,
+      "corrected_flr": 0.0,
+      "by_category": {
+        "current": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "historical": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "update": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "contradictory": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "future_contamination": {
+          "n": 20,
+          "flr": 0.0
+        }
+      },
+      "note": "FLR computed only on current-question categories (excludes T3 Future where future memory is gold)"
+    },
+    "elr": 0.1667,
+    "recall@1": 0.8333,
+    "recall@5": 0.8333
+  },
+  "no_temporal": {
+    "original_flr": 0.25,
+    "corrected_flr": {
+      "n_current_questions": 100,
+      "corrected_flr": 0.2,
+      "by_category": {
+        "current": {
+          "n": 20,
+          "flr": 0.3333
+        },
+        "historical": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "update": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "contradictory": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "future_contamination": {
+          "n": 20,
+          "flr": 0.6667
+        }
+      },
+      "note": "FLR computed only on current-question categories (excludes T3 Future where future memory is gold)"
+    },
+    "elr": 0.0,
+    "recall@1": 0.5,
+    "recall@5": 1.0
+  },
+  "soft_decay_floor0.1": {
+    "original_flr": 0.25,
+    "corrected_flr": {
+      "n_current_questions": 100,
+      "corrected_flr": 0.2,
+      "by_category": {
+        "current": {
+          "n": 20,
+          "flr": 0.3333
+        },
+        "historical": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "update": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "contradictory": {
+          "n": 20,
+          "flr": 0.0
+        },
+        "future_contamination": {
+          "n": 20,
+          "flr": 0.6667
+        }
+      },
+      "note": "FLR computed only on current-question categories (excludes T3 Future where future memory is gold)"
+    },
+    "elr": 0.0,
+    "recall@1": 0.8333,
+    "recall@5": 1.0
+  },
+  "pareto_sweep": [
+    {
+      "floor": 0.0,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.01,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.05,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.1,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.2,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.3,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.5,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.7,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 1.0,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    }
+  ],
+  "pareto_efficient": [
+    {
+      "floor": 0.0,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.01,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.05,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.1,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.2,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.3,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.5,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 0.7,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    },
+    {
+      "floor": 1.0,
+      "recall@1": 0.8333,
+      "recall@5": 1.0,
+      "elr": 0.0,
+      "flr_original": 0.25,
+      "flr_corrected": 0.2
+    }
+  ]
+}

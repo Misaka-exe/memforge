@@ -1,0 +1,165 @@
+{
+  "n_cases": 30,
+  "n_queries_per_case": 5,
+  "design": "Initial: 4 slots (name/city/job/hobby). New evidence: city update. Test current/historical/unchanged.",
+  "no_reconsolidation": {
+    "n_cases": 30,
+    "current_recall": 0.0,
+    "historical_recall": 0.0,
+    "unchanged_slot_recall": 1.0,
+    "false_update_rate": 0.0,
+    "lineage_completeness": 0.0,
+    "overall_accuracy": 0.6
+  },
+  "reconsolidation": {
+    "n_cases": 30,
+    "current_recall": 1.0,
+    "historical_recall": 1.0,
+    "unchanged_slot_recall": 1.0,
+    "false_update_rate": 0.0,
+    "lineage_completeness": 1.0,
+    "overall_accuracy": 1.0
+  },
+  "decision_distribution": {
+    "UPDATE": 30
+  },
+  "sample_case": {
+    "initial": {
+      "name": "Alice",
+      "city": "Beijing",
+      "job": "Engineer",
+      "hobby": "Tennis"
+    },
+    "new_evidence": "Alice moved to Shanghai.",
+    "no_recon_result": {
+      "system": "no_reconsolidation",
+      "memory": {
+        "memory_id": "7a882a24-6af1-46d1-9bd7-a0d387b4170d",
+        "slots": {
+          "name": "Alice",
+          "city": "Beijing",
+          "job": "Engineer",
+          "hobby": "Tennis"
+        },
+        "status": "ACTIVE",
+        "lineage_id": "",
+        "version": 1,
+        "derived_from": ""
+      },
+      "queries": [
+        {
+          "query": "current city",
+          "slot": "city",
+          "expected": "Shanghai",
+          "type": "current",
+          "correct": false,
+          "retrieved": "Beijing"
+        },
+        {
+          "query": "old city",
+          "slot": "city",
+          "expected": "Beijing",
+          "type": "historical",
+          "correct": false,
+          "retrieved": "Beijing"
+        },
+        {
+          "query": "job",
+          "slot": "job",
+          "expected": "Engineer",
+          "type": "unchanged",
+          "correct": true,
+          "retrieved": "Engineer"
+        },
+        {
+          "query": "hobby",
+          "slot": "hobby",
+          "expected": "Tennis",
+          "type": "unchanged",
+          "correct": true,
+          "retrieved": "Tennis"
+        },
+        {
+          "query": "name",
+          "slot": "name",
+          "expected": "Alice",
+          "type": "unchanged",
+          "correct": true,
+          "retrieved": "Alice"
+        }
+      ]
+    },
+    "recon_result": {
+      "system": "reconsolidation",
+      "decision": "UPDATE",
+      "old_memory": {
+        "memory_id": "1f004806-2517-4b3c-a87e-319f0c502d71",
+        "slots": {
+          "name": "Alice",
+          "city": "Beijing",
+          "job": "Engineer",
+          "hobby": "Tennis"
+        },
+        "status": "DEPRECATED",
+        "lineage_id": "834c4621-af24-4309-bc00-663854017c4b",
+        "version": 1,
+        "derived_from": ""
+      },
+      "new_memory": {
+        "memory_id": "c8f76953-867f-4f0c-ac48-69ebf1d995f4",
+        "slots": {
+          "name": "Alice",
+          "city": "Shanghai",
+          "job": "Engineer",
+          "hobby": "Tennis"
+        },
+        "status": "ACTIVE",
+        "lineage_id": "834c4621-af24-4309-bc00-663854017c4b",
+        "version": 2,
+        "derived_from": "1f004806-2517-4b3c-a87e-319f0c502d71"
+      },
+      "queries": [
+        {
+          "query": "current city",
+          "slot": "city",
+          "expected": "Shanghai",
+          "type": "current",
+          "correct": true,
+          "retrieved": "Shanghai"
+        },
+        {
+          "query": "old city",
+          "slot": "city",
+          "expected": "Beijing",
+          "type": "historical",
+          "correct": true,
+          "retrieved": "Beijing"
+        },
+        {
+          "query": "job",
+          "slot": "job",
+          "expected": "Engineer",
+          "type": "unchanged",
+          "correct": true,
+          "retrieved": "Engineer"
+        },
+        {
+          "query": "hobby",
+          "slot": "hobby",
+          "expected": "Tennis",
+          "type": "unchanged",
+          "correct": true,
+          "retrieved": "Tennis"
+        },
+        {
+          "query": "name",
+          "slot": "name",
+          "expected": "Alice",
+          "type": "unchanged",
+          "correct": true,
+          "retrieved": "Alice"
+        }
+      ]
+    }
+  }
+}
