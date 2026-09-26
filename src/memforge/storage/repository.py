@@ -208,21 +208,33 @@ class MemoryRepository:
         status: MemoryStatus = MemoryStatus.ACTIVE,
         top_k: int = 20,
         as_of: datetime | None = None,
+        hard_temporal: bool = False,
     ) -> list[Memory]:
-        """pgvector similarity search with metadata + temporal filter.
+        """pgvector similarity search with metadata filter.
 
-        Temporal uses the half-open interval [valid_from, valid_until).
+        Temporal handling:
+        - ``hard_temporal=False`` (v2 default): ``as_of`` is NOT applied in SQL.
+          Out-of-window memories are returned and down-weighted by the temporal
+          scorer in the reranker (soft decay). This fixes the v1 evidence-loss
+          problem where hard filtering dropped future / expired gold memories.
+        - ``hard_temporal=True`` (v1 behavior): half-open interval
+          [valid_from, valid_until) filter applied in SQL.
         """
-        sql = """
+        if hard_temporal and as_of is not None:
+            temporal_clause = """
+              AND (valid_from IS NULL OR valid_from <= :as_of)
+              AND (valid_until IS NULL OR :as_of < valid_until)
+            """
+        else:
+            temporal_clause = ""
+        sql = f"""
             SELECT id, 1 - (embedding <=> :qemb) AS sim
             FROM memories
             WHERE embedding IS NOT NULL
               AND status = :status
               AND (:user_id IS NULL OR user_id = :user_id)
               AND (:mtype IS NULL OR memory_type = :mtype)
-              AND (:as_of IS NULL
-                   OR (valid_from IS NULL OR valid_from <= :as_of)
-                   AND (valid_until IS NULL OR :as_of < valid_until))
+              {temporal_clause}
             ORDER BY sim DESC
             LIMIT :top_k
         """

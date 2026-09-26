@@ -1,4 +1,9 @@
-"""Hybrid retrieval: vector + keyword -> union -> temporal filter -> utility rerank."""
+"""Hybrid retrieval: vector + keyword -> union -> (optional temporal soft score) -> utility rerank.
+
+v2: when a ``temporal_scorer`` is wired, ``as_of`` drives a soft temporal score
+inside the reranker instead of a hard filter. ACTIVE-only filtering is retained
+(it is a lifecycle status filter, not a temporal validity filter).
+"""
 from __future__ import annotations
 
 from datetime import datetime
@@ -6,6 +11,7 @@ from datetime import datetime
 from memforge.core.types import Memory, MemoryStatus
 from memforge.embeddings.base import EmbeddingProvider
 from memforge.retrieval.reranker import UtilityReranker
+from memforge.retrieval.temporal import TemporalScorer
 from memforge.storage.repository import MemoryRepository
 
 
@@ -17,10 +23,13 @@ class HybridRetriever:
         reranker: UtilityReranker | None = None,
         semantic_top_k: int = 20,
         keyword_top_k: int = 20,
+        temporal_scorer: TemporalScorer | None = None,
     ) -> None:
         self.repository = repository
         self.embedding = embedding
-        self.reranker = reranker or UtilityReranker(embedding=embedding)
+        self.reranker = reranker or UtilityReranker(
+            embedding=embedding, temporal_scorer=temporal_scorer
+        )
         self.semantic_top_k = semantic_top_k
         self.keyword_top_k = keyword_top_k
 

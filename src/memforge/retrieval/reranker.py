@@ -1,11 +1,14 @@
 """Utility-aware reranker.
 
-score(m, q) = w1*relevance + w2*confidence + w3*importance + w4*freshness
+v1 score(m, q) = w1*relevance + w2*confidence + w3*importance + w4*freshness
 
-- relevance: cosine similarity between query embedding and memory embedding
-- freshness: exponential decay on updated_at
-- Weights are configurable (RerankConfig) so ablation experiments can simply
-  toggle each weight to zero.
+v2 adds a soft temporal term:
+    score(m, q) += w5*temporal_score(m, as_of)
+
+When ``as_of`` is supplied together with a ``TemporalScorer`` the reranker no
+longer drops out-of-window memories; it down-weights them via the temporal
+score. If no scorer is configured, the v1 hard-filter behavior is preserved for
+backward compatibility.
 """
 from __future__ import annotations
 
@@ -16,7 +19,7 @@ from pydantic import BaseModel, Field
 
 from memforge.core.types import Memory
 from memforge.embeddings.base import EmbeddingProvider
-from memforge.retrieval.temporal import memory_active_at
+from memforge.retrieval.temporal import TemporalScorer, memory_active_at
 
 
 class RerankConfig(BaseModel):
@@ -24,14 +27,16 @@ class RerankConfig(BaseModel):
     confidence_weight: float = 0.2
     importance_weight: float = 0.2
     freshness_weight: float = 0.2
+    temporal_weight: float = 0.0  # v2: 0.0 reproduces v1 ranking
     freshness_half_life_days: int = 90
 
-    def as_weights(self) -> tuple[float, float, float, float]:
+    def as_weights(self) -> tuple[float, float, float, float, float]:
         return (
             self.relevance_weight,
             self.confidence_weight,
             self.importance_weight,
             self.freshness_weight,
+            self.temporal_weight,
         )
 
 
@@ -61,19 +66,31 @@ class UtilityReranker:
         self,
         embedding: EmbeddingProvider | None = None,
         config: RerankConfig | None = None,
+        temporal_scorer: TemporalScorer | None = None,
     ) -> None:
         self.embedding = embedding
         self.config = config or RerankConfig()
+        self.temporal_scorer = temporal_scorer
 
-    def score(self, memory: Memory, query_embedding: list[float], now: datetime | None = None) -> float:
-        w_rel, w_conf, w_imp, w_fresh = self.config.as_weights()
+    def score(
+        self,
+        memory: Memory,
+        query_embedding: list[float],
+        now: datetime | None = None,
+        as_of: datetime | None = None,
+    ) -> float:
+        w_rel, w_conf, w_imp, w_fresh, w_temporal = self.config.as_weights()
         relevance = cosine(query_embedding, memory.embedding or [])
         freshness = freshness_score(memory, now, self.config.freshness_half_life_days)
+        temporal = 1.0
+        if as_of is not None and self.temporal_scorer is not None:
+            temporal = self.temporal_scorer.score(memory, as_of)
         return (
             w_rel * relevance
             + w_conf * memory.confidence
             + w_imp * memory.importance
             + w_fresh * freshness
+            + w_temporal * temporal
         )
 
     def rerank(
@@ -85,11 +102,12 @@ class UtilityReranker:
         now: datetime | None = None,
     ) -> list[Memory]:
         query_embedding = self.embedding.embed_one(query) if self.embedding else []
-        if as_of is not None:
+        if as_of is not None and self.temporal_scorer is None:
+            # v1 backward-compatible hard filter when no soft scorer is wired.
             candidates = [m for m in candidates if memory_active_at(m, as_of)]
         scored = sorted(
             candidates,
-            key=lambda m: self.score(m, query_embedding, now),
+            key=lambda m: self.score(m, query_embedding, now, as_of),
             reverse=True,
         )
         return scored[:top_k]

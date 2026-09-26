@@ -1,0 +1,41 @@
+{
+  "dataset": "LongMemEval-S",
+  "embedding": "all-MiniLM-L6-v2",
+  "llm": "deepseek-chat",
+  "prompt_version_v1": "v1.0",
+  "prompt_version_v2": "v2.0-grounded",
+  "n_cases": 3,
+  "qa_sample": 0,
+  "elr": {
+    "v1_dropped_gold": 0,
+    "v2_dropped_gold": 0,
+    "gold_total": 3,
+    "elr_rate": 0.0
+  },
+  "retrieval": {
+    "V1-Hybrid": {
+      "recall_any@1": 0.6667,
+      "recall_all@1": 0.6667,
+      "recall_any@5": 1.0,
+      "recall_all@5": 1.0,
+      "recall_any@10": 1.0,
+      "recall_all@10": 1.0,
+      "mrr": 0.75,
+      "ndcg@10": 0.8102,
+      "num_questions": 3
+    },
+    "V2-Full": {
+      "recall_any@1": 0.6667,
+      "recall_all@1": 0.6667,
+      "recall_any@5": 1.0,
+      "recall_all@5": 1.0,
+      "recall_any@10": 1.0,
+      "recall_all@10": 1.0,
+      "mrr": 0.75,
+      "ndcg@10": 0.8102,
+      "num_questions": 3
+    }
+  },
+  "qa": {},
+  "elapsed_seconds": 23.6
+}

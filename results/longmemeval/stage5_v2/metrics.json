@@ -1,0 +1,53 @@
+{
+  "system": "v2_grounded",
+  "n": 500,
+  "answerable_n": 470,
+  "abstention_n": 30,
+  "overall_accuracy": 0.404,
+  "answerable_accuracy": 0.38085106382978723,
+  "abstention_accuracy": 0.7666666666666667,
+  "abstention_rate": 0.242,
+  "gate_sufficient_rate": 1.0,
+  "gate_insufficient_rate": 0.0,
+  "avg_citations": 1.568,
+  "verification_pass_rate": 0.632,
+  "verification_fail_rate": 0.104,
+  "avg_latency_ms": 825.1745999999999,
+  "by_category": {
+    "abstention": {
+      "n": 30,
+      "accuracy": 0.7666666666666667,
+      "abstention_rate": 0.7666666666666667
+    },
+    "knowledge-update": {
+      "n": 72,
+      "accuracy": 0.4722222222222222,
+      "abstention_rate": 0.027777777777777776
+    },
+    "multi-session": {
+      "n": 121,
+      "accuracy": 0.18181818181818182,
+      "abstention_rate": 0.256198347107438
+    },
+    "single-session-assistant": {
+      "n": 56,
+      "accuracy": 0.8214285714285714,
+      "abstention_rate": 0.017857142857142856
+    },
+    "single-session-preference": {
+      "n": 30,
+      "accuracy": 0.0,
+      "abstention_rate": 0.23333333333333334
+    },
+    "single-session-user": {
+      "n": 64,
+      "accuracy": 0.75,
+      "abstention_rate": 0.0
+    },
+    "temporal-reasoning": {
+      "n": 127,
+      "accuracy": 0.2283464566929134,
+      "abstention_rate": 0.44881889763779526
+    }
+  }
+}

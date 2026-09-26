@@ -11,7 +11,7 @@ from typing import TypeVar
 
 from pydantic import BaseModel
 
-from memforge.llm.base import LLMProvider, Message
+from memforge.llm.base import LLMProvider, Message, RawCompletion
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -51,3 +51,32 @@ class OpenAICompatibleProvider(LLMProvider):
             data = resp.json()
         content = data["choices"][0]["message"]["content"]
         return response_model.model_validate(json.loads(content))
+
+    async def generate_raw(
+        self,
+        messages: list[Message],
+        max_tokens: int = 512,
+        temperature: float = 0.0,
+    ) -> RawCompletion:
+        import httpx
+
+        payload = {
+            "model": self.model,
+            "messages": [m.model_dump() for m in messages],
+            "temperature": temperature,
+            "max_tokens": max_tokens,
+        }
+        headers = {"Authorization": f"Bearer {self.api_key}"}
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            resp = await client.post(
+                f"{self.base_url}/chat/completions", json=payload, headers=headers
+            )
+            resp.raise_for_status()
+            data = resp.json()
+        content = data["choices"][0]["message"]["content"] or ""
+        usage = data.get("usage", {}) or {}
+        return RawCompletion(
+            text=content,
+            prompt_tokens=int(usage.get("prompt_tokens", 0)),
+            completion_tokens=int(usage.get("completion_tokens", 0)),
+        )
