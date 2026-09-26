@@ -212,10 +212,11 @@ Prompt 要求 LLM 返回结构化 JSON（使用 OpenAI JSON mode）：
 | Answerable 问题，模型错误 abstain | 98/470 | 20.9% |
 | Answerable 问题，模型回答 | 372/470 | 79.1% |
 
-v2 的 abstention accuracy 下降（0.767 vs v1 0.967）的主要原因：
-1. Grounded prompt 让模型更倾向于回答（即使证据不足）
-2. Gate 未实际拦截任何问题（100% SUFFICIENT）
-3. Answerable 问题中有 20.9% 被模型错误 abstain，拉低了 answerable accuracy 的上限
+v2 的 abstention accuracy 从 0.967 降至 0.767，直接对应于 30 个 abstention 问题中有 7 个被错误回答（23.3%）。
+
+同时，470 个 answerable 问题中有 98 个被错误 abstain（20.9%）。这一现象不影响 abstention accuracy，但会限制 answerable QA 的上限。
+
+当前 Gate 100% 判定为 SUFFICIENT，因此这些 abstention 决策均不是由 Gate 实际拦截产生的，而主要反映当前 grounded QA pipeline 自身的回答/拒答行为。后续需要通过 Gate 校准和独立 validation set 分析，区分"证据不足导致的合理 abstention"和"模型过度 abstain"。
 
 ### 8.5 Verification 结果
 
@@ -246,7 +247,7 @@ v2 的 abstention accuracy 下降（0.767 vs v1 0.967）的主要原因：
 
 ### Finding 1: Evidence-grounded generation improves QA with retrieval held constant
 
-在检索输入完全相同的情况下，v2 Grounded 的 answerable QA 比 v1 Hybrid 高 5.5pp（+17%）。这说明 **same retrieval, different answering pipeline** 可以产生显著的 QA 差异。citation grounding + 结构化 prompt 让 LLM 更专注于检索证据，减少了幻觉和无关回答。
+在检索输入完全相同的情况下，v2 Grounded 的 answerable QA 比 v1 Hybrid 高 5.5pp（+17%）。观察到的 QA 提升与 grounded answering pipeline（citation + 结构化 prompt）一致；但由于当前实验未对这些组件进行单独消融，该提升的具体机制仍需进一步验证。
 
 ### Finding 2: Retrieval quality alone does not determine QA
 
@@ -262,7 +263,7 @@ v2 的 abstention accuracy 从 0.967 下降到 0.767。Grounded prompt 提高了
 
 ### Finding 5: Verification provides actionable signal
 
-10.0% 的 answerable 答案验证失败（包含未被证据支持的声明）。这为 v3 reconsolidation 提供了明确的输入：FAIL 的答案可以触发记忆更新或补充检索。
+10.0% 的 answerable 答案被当前 heuristic verifier 判定为 FAIL，表明其中存在未被当前证据支持的声明。这类 FAIL 可作为后续 reconsolidation 或补充检索机制的候选触发信号。
 
 ---
 
