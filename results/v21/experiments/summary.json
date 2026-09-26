@@ -1,0 +1,334 @@
+{
+  "v2_grounded": {
+    "system": "v2_grounded",
+    "n_questions": 50,
+    "mode": "static",
+    "config": {
+      "enable_gate": false,
+      "enable_temporal": false,
+      "enable_reconsolidation": false
+    },
+    "retrieval": {
+      "recall@1": 0.0,
+      "recall@5": 0.0,
+      "recall_all@5": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "qa": {
+      "overall": 0.9,
+      "answerable": 1.0,
+      "abstention": 0.0,
+      "abstention_rate": 0.0
+    },
+    "gate": {
+      "coverage": 1.0,
+      "sufficient_rate": 0.0,
+      "uncertain_rate": 0.0,
+      "insufficient_rate": 0.0,
+      "answerable_recall": 0.0,
+      "abstention_precision": 0.0
+    },
+    "evidence": {
+      "avg_citations": 1.9,
+      "verification_pass": 1.0,
+      "verification_warn": 0.0,
+      "verification_fail": 0.0,
+      "unsupported_claim_rate": 0.0
+    },
+    "memory": {
+      "evidence_preservation_rate": 1.0,
+      "evidence_loss_rate": 0.0,
+      "memory_update_count": 0,
+      "false_update_rate": 0.0,
+      "reconsolidation_triggered": 0
+    },
+    "temporal": {
+      "future_leakage_rate": 0.0
+    },
+    "efficiency": {
+      "avg_latency_ms": 0.0,
+      "total_tokens": 3500,
+      "prompt_tokens": 2500,
+      "completion_tokens": 1000,
+      "api_calls": 50
+    },
+    "by_category": {
+      "single-session-user": {
+        "n": 10,
+        "correct": 5,
+        "accuracy": 0.5
+      },
+      "multi-session": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "temporal-reasoning": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "knowledge-update": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "single-session-assistant": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      }
+    },
+    "raw_results_path": "D:\\agentmemory\\memforge\\results\\v21\\experiments\\v2_grounded_raw.jsonl"
+  },
+  "v21_gate": {
+    "system": "v21_gate",
+    "n_questions": 50,
+    "mode": "static",
+    "config": {
+      "enable_gate": true,
+      "enable_temporal": false,
+      "enable_reconsolidation": false
+    },
+    "retrieval": {
+      "recall@1": 0.0,
+      "recall@5": 0.0,
+      "recall_all@5": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "qa": {
+      "overall": 0.9,
+      "answerable": 1.0,
+      "abstention": 0.0,
+      "abstention_rate": 0.1
+    },
+    "gate": {
+      "coverage": 0.9,
+      "sufficient_rate": 0.9,
+      "uncertain_rate": 0.0,
+      "insufficient_rate": 0.1,
+      "answerable_recall": 0.0,
+      "abstention_precision": 0.0
+    },
+    "evidence": {
+      "avg_citations": 2.0,
+      "verification_pass": 0.9,
+      "verification_warn": 0.0,
+      "verification_fail": 0.0,
+      "unsupported_claim_rate": 0.0
+    },
+    "memory": {
+      "evidence_preservation_rate": 1.0,
+      "evidence_loss_rate": 0.0,
+      "memory_update_count": 0,
+      "false_update_rate": 0.0,
+      "reconsolidation_triggered": 0
+    },
+    "temporal": {
+      "future_leakage_rate": 0.0
+    },
+    "efficiency": {
+      "avg_latency_ms": 0.0,
+      "total_tokens": 3150,
+      "prompt_tokens": 2250,
+      "completion_tokens": 900,
+      "api_calls": 45
+    },
+    "by_category": {
+      "single-session-user": {
+        "n": 10,
+        "correct": 5,
+        "accuracy": 0.5
+      },
+      "multi-session": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "temporal-reasoning": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "knowledge-update": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "single-session-assistant": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      }
+    },
+    "raw_results_path": "D:\\agentmemory\\memforge\\results\\v21\\experiments\\v21_gate_raw.jsonl"
+  },
+  "v21_recon": {
+    "system": "v21_recon",
+    "n_questions": 50,
+    "mode": "adaptive",
+    "config": {
+      "enable_gate": false,
+      "enable_temporal": false,
+      "enable_reconsolidation": true
+    },
+    "retrieval": {
+      "recall@1": 0.0,
+      "recall@5": 0.0,
+      "recall_all@5": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "qa": {
+      "overall": 0.9,
+      "answerable": 1.0,
+      "abstention": 0.0,
+      "abstention_rate": 0.0
+    },
+    "gate": {
+      "coverage": 1.0,
+      "sufficient_rate": 0.0,
+      "uncertain_rate": 0.0,
+      "insufficient_rate": 0.0,
+      "answerable_recall": 0.0,
+      "abstention_precision": 0.0
+    },
+    "evidence": {
+      "avg_citations": 1.9,
+      "verification_pass": 1.0,
+      "verification_warn": 0.0,
+      "verification_fail": 0.0,
+      "unsupported_claim_rate": 0.0
+    },
+    "memory": {
+      "evidence_preservation_rate": 1.0,
+      "evidence_loss_rate": 0.0,
+      "memory_update_count": 0,
+      "false_update_rate": 0.0,
+      "reconsolidation_triggered": 0
+    },
+    "temporal": {
+      "future_leakage_rate": 0.0
+    },
+    "efficiency": {
+      "avg_latency_ms": 0.0,
+      "total_tokens": 3500,
+      "prompt_tokens": 2500,
+      "completion_tokens": 1000,
+      "api_calls": 50
+    },
+    "by_category": {
+      "single-session-user": {
+        "n": 10,
+        "correct": 5,
+        "accuracy": 0.5
+      },
+      "multi-session": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "temporal-reasoning": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "knowledge-update": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "single-session-assistant": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      }
+    },
+    "raw_results_path": "D:\\agentmemory\\memforge\\results\\v21\\experiments\\v21_recon_raw.jsonl"
+  },
+  "v21_full": {
+    "system": "v21_full",
+    "n_questions": 50,
+    "mode": "adaptive",
+    "config": {
+      "enable_gate": true,
+      "enable_temporal": false,
+      "enable_reconsolidation": true
+    },
+    "retrieval": {
+      "recall@1": 0.0,
+      "recall@5": 0.0,
+      "recall_all@5": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "qa": {
+      "overall": 0.9,
+      "answerable": 1.0,
+      "abstention": 0.0,
+      "abstention_rate": 0.1
+    },
+    "gate": {
+      "coverage": 0.9,
+      "sufficient_rate": 0.9,
+      "uncertain_rate": 0.0,
+      "insufficient_rate": 0.1,
+      "answerable_recall": 0.0,
+      "abstention_precision": 0.0
+    },
+    "evidence": {
+      "avg_citations": 2.0,
+      "verification_pass": 0.9,
+      "verification_warn": 0.0,
+      "verification_fail": 0.0,
+      "unsupported_claim_rate": 0.0
+    },
+    "memory": {
+      "evidence_preservation_rate": 1.0,
+      "evidence_loss_rate": 0.0,
+      "memory_update_count": 0,
+      "false_update_rate": 0.0,
+      "reconsolidation_triggered": 0
+    },
+    "temporal": {
+      "future_leakage_rate": 0.0
+    },
+    "efficiency": {
+      "avg_latency_ms": 0.0,
+      "total_tokens": 3150,
+      "prompt_tokens": 2250,
+      "completion_tokens": 900,
+      "api_calls": 45
+    },
+    "by_category": {
+      "single-session-user": {
+        "n": 10,
+        "correct": 5,
+        "accuracy": 0.5
+      },
+      "multi-session": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "temporal-reasoning": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "knowledge-update": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      },
+      "single-session-assistant": {
+        "n": 10,
+        "correct": 10,
+        "accuracy": 1.0
+      }
+    },
+    "raw_results_path": "D:\\agentmemory\\memforge\\results\\v21\\experiments\\v21_full_raw.jsonl"
+  }
+}

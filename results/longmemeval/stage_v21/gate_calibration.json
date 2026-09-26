@@ -1,0 +1,238 @@
+{
+  "n_questions": 500,
+  "n_answerable": 470,
+  "n_abstention": 30,
+  "calibration_note": "EXPLORATORY: calibrated and evaluated on same 500 questions. Not unbiased.",
+  "gates": {
+    "threshold": {
+      "calibration": {
+        "method": "threshold_top1",
+        "best_threshold": 0.1,
+        "best_f1": 0.969,
+        "n_samples": 500,
+        "note": "exploratory calibration on same dataset; not unbiased evaluation"
+      },
+      "metrics": {
+        "coverage": 1.0,
+        "answerable_recall": 1.0,
+        "abstention_precision": 0,
+        "abstention_accuracy": 0.0,
+        "selective_accuracy": 0.404,
+        "n_sufficient": 500,
+        "n_uncertain": 0,
+        "n_insufficient": 0
+      }
+    },
+    "multifeature": {
+      "calibration": {
+        "method": "multifeature_grid",
+        "best_top1_threshold": 0.3,
+        "best_top5_threshold": 0.2,
+        "best_f1": 0.934,
+        "n_samples": 500,
+        "note": "exploratory calibration on same dataset; not unbiased evaluation"
+      },
+      "metrics": {
+        "coverage": 0.984,
+        "answerable_recall": 0.9872,
+        "abstention_precision": 0.25,
+        "abstention_accuracy": 0.0667,
+        "selective_accuracy": 0.4065,
+        "n_sufficient": 455,
+        "n_uncertain": 37,
+        "n_insufficient": 8
+      }
+    },
+    "v2_baseline": {
+      "description": "V2 gate using memory.importance proxy → 100% SUFFICIENT",
+      "coverage": 1.0,
+      "selective_accuracy": 0.404,
+      "note": "No abstention at all; coverage=1.0 by construction"
+    }
+  },
+  "risk_coverage_curve": [
+    {
+      "threshold": 0.2,
+      "coverage": 1.0,
+      "risk": 0.596,
+      "selective_accuracy": 0.404,
+      "answerable_recall": 1.0
+    },
+    {
+      "threshold": 0.225,
+      "coverage": 1.0,
+      "risk": 0.596,
+      "selective_accuracy": 0.404,
+      "answerable_recall": 1.0
+    },
+    {
+      "threshold": 0.25,
+      "coverage": 0.998,
+      "risk": 0.5952,
+      "selective_accuracy": 0.40480961923847697,
+      "answerable_recall": 0.997872340425532
+    },
+    {
+      "threshold": 0.275,
+      "coverage": 0.994,
+      "risk": 0.5976,
+      "selective_accuracy": 0.4024144869215292,
+      "answerable_recall": 0.9957446808510638
+    },
+    {
+      "threshold": 0.3,
+      "coverage": 0.984,
+      "risk": 0.5935,
+      "selective_accuracy": 0.4065040650406504,
+      "answerable_recall": 0.9872340425531915
+    },
+    {
+      "threshold": 0.325,
+      "coverage": 0.978,
+      "risk": 0.5951,
+      "selective_accuracy": 0.4049079754601227,
+      "answerable_recall": 0.9808510638297873
+    },
+    {
+      "threshold": 0.35,
+      "coverage": 0.968,
+      "risk": 0.595,
+      "selective_accuracy": 0.4049586776859504,
+      "answerable_recall": 0.9744680851063829
+    },
+    {
+      "threshold": 0.375,
+      "coverage": 0.954,
+      "risk": 0.5933,
+      "selective_accuracy": 0.40670859538784065,
+      "answerable_recall": 0.9617021276595744
+    },
+    {
+      "threshold": 0.4,
+      "coverage": 0.91,
+      "risk": 0.5824,
+      "selective_accuracy": 0.4175824175824176,
+      "answerable_recall": 0.9191489361702128
+    },
+    {
+      "threshold": 0.425,
+      "coverage": 0.874,
+      "risk": 0.5812,
+      "selective_accuracy": 0.41876430205949655,
+      "answerable_recall": 0.8851063829787233
+    },
+    {
+      "threshold": 0.45,
+      "coverage": 0.83,
+      "risk": 0.5807,
+      "selective_accuracy": 0.41927710843373495,
+      "answerable_recall": 0.8425531914893617
+    },
+    {
+      "threshold": 0.475,
+      "coverage": 0.764,
+      "risk": 0.5759,
+      "selective_accuracy": 0.42408376963350786,
+      "answerable_recall": 0.7787234042553192
+    },
+    {
+      "threshold": 0.5,
+      "coverage": 0.712,
+      "risk": 0.5702,
+      "selective_accuracy": 0.4297752808988764,
+      "answerable_recall": 0.7276595744680852
+    },
+    {
+      "threshold": 0.525,
+      "coverage": 0.634,
+      "risk": 0.5426,
+      "selective_accuracy": 0.45741324921135645,
+      "answerable_recall": 0.6468085106382979
+    },
+    {
+      "threshold": 0.55,
+      "coverage": 0.562,
+      "risk": 0.5658,
+      "selective_accuracy": 0.43416370106761565,
+      "answerable_recall": 0.5765957446808511
+    },
+    {
+      "threshold": 0.575,
+      "coverage": 0.502,
+      "risk": 0.5458,
+      "selective_accuracy": 0.4541832669322709,
+      "answerable_recall": 0.5170212765957447
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.448,
+      "risk": 0.5402,
+      "selective_accuracy": 0.45982142857142855,
+      "answerable_recall": 0.46382978723404256
+    },
+    {
+      "threshold": 0.625,
+      "coverage": 0.374,
+      "risk": 0.4973,
+      "selective_accuracy": 0.5026737967914439,
+      "answerable_recall": 0.3893617021276596
+    },
+    {
+      "threshold": 0.65,
+      "coverage": 0.316,
+      "risk": 0.4747,
+      "selective_accuracy": 0.5253164556962026,
+      "answerable_recall": 0.3276595744680851
+    },
+    {
+      "threshold": 0.675,
+      "coverage": 0.248,
+      "risk": 0.4274,
+      "selective_accuracy": 0.5725806451612904,
+      "answerable_recall": 0.2574468085106383
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.214,
+      "risk": 0.4206,
+      "selective_accuracy": 0.5794392523364486,
+      "answerable_recall": 0.22127659574468084
+    },
+    {
+      "threshold": 0.725,
+      "coverage": 0.178,
+      "risk": 0.382,
+      "selective_accuracy": 0.6179775280898876,
+      "answerable_recall": 0.1829787234042553
+    },
+    {
+      "threshold": 0.75,
+      "coverage": 0.146,
+      "risk": 0.3151,
+      "selective_accuracy": 0.684931506849315,
+      "answerable_recall": 0.14893617021276595
+    },
+    {
+      "threshold": 0.775,
+      "coverage": 0.098,
+      "risk": 0.2653,
+      "selective_accuracy": 0.7346938775510204,
+      "answerable_recall": 0.1
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.074,
+      "risk": 0.2162,
+      "selective_accuracy": 0.7837837837837838,
+      "answerable_recall": 0.07872340425531915
+    }
+  ],
+  "feature_distribution": {
+    "answerable_top1_mean": 0.5395,
+    "answerable_top1_std": 0.1392,
+    "abstention_top1_mean": 0.451,
+    "abstention_top1_std": 0.1357,
+    "diff": 0.0885,
+    "note": "Weak separability: diff small relative to std"
+  }
+}
