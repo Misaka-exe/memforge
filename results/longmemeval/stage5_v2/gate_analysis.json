@@ -1,0 +1,50 @@
+{
+  "n_total": 500,
+  "n_answerable": 470,
+  "n_abstention": 30,
+  "gate_distribution": {
+    "SUFFICIENT": 500
+  },
+  "retrieval_count": {
+    "answerable": {
+      "mean": 10.0,
+      "std": 0.0,
+      "min": 10,
+      "max": 10
+    },
+    "abstention": {
+      "mean": 10.0,
+      "std": 0.0,
+      "min": 10,
+      "max": 10
+    }
+  },
+  "embedding_similarity": {
+    "answerable_n": 200,
+    "answerable_top1_mean": 0.5164553551375866,
+    "answerable_top1_std": 0.1264505935136873,
+    "abstention_n": 30,
+    "abstention_top1_mean": 0.4510173718134562,
+    "abstention_top1_std": 0.13570444933762663
+  },
+  "verification": {
+    "answerable": {
+      "PASS": 315,
+      "FAIL": 47,
+      "null": 98,
+      "WARN": 10
+    },
+    "abstention": {
+      "null": 23,
+      "FAIL": 5,
+      "PASS": 1,
+      "WARN": 1
+    }
+  },
+  "abstention_behavior": {
+    "abstention_questions_model_abstained": 23,
+    "abstention_questions_model_answered": 7,
+    "answerable_questions_model_incorrectly_abstained": 98
+  },
+  "conclusion": "Retrieval top-1 similarity differs: answerable=0.5165, abstention=0.4510 (diff=0.0654). Signal may be usable for gate calibration, but requires a held-out validation set."
+}
