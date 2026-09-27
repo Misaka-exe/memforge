@@ -1,7 +1,7 @@
 # MemForge V2.1 Research Report
 ## Evidence-Grounded Adaptive Memory
 
-> 日期: 2026-09-27 | 版本: v2.1.0 | 状态: Infrastructure Complete, Real LLM Experiment Pending
+> 日期: 2026-09-27 | 版本: v2.1.0 | 状态: Real LLM Experiment Complete (1000 API calls)
 
 ---
 
@@ -341,7 +341,7 @@ V1 发现的 deterministic lifecycle 负贡献直接指导了 V2.1：
 | Evidence-Grounded Reconsolidation | ✅ Complete | Unit test + synthetic causal benchmark (30 cases) |
 | Unified Adaptive Pipeline | ✅ Complete | Unit test + 50题 mock end-to-end |
 | Research Audit | ✅ Complete | Gate audit + Temporal audit + Recon causal benchmark |
-| Real LongMemEval-S Experiment | ⏳ Pending | 需要真实 API |
+| Real LongMemEval-S Experiment | ✅ Complete | 1000 API calls (Recon 500 + Full 500) |
 
 ### 新增审计结果文件
 - `results/longmemeval/stage_v21/gate_audit.json` — Gate 详细审计（逐题 decision, confusion matrix, risk-coverage curve）
@@ -350,4 +350,56 @@ V1 发现的 deterministic lifecycle 负贡献直接指导了 V2.1：
 
 ---
 
-*报告结束。V2.1 基础设施完成，真实 LLM 实验待执行。*
+*报告结束。V2.1 基础设施 + 真实 LLM 实验全部完成。*
+
+---
+
+## 14. Real LongMemEval-S Experiment Results (1000 API calls)
+
+**实验配置**: deepseek-chat, temperature=0.0, V2 frozen retrieval inputs, V1 deterministic evaluator
+**API calls**: V2.1-Recon 500 + V2.1-Full 500 = 1000 (V2 baseline reused, 0 new calls)
+
+### 14.1 Main Results
+
+| System | Overall | Answerable | Abstention | Gate Insufficient | Recon Triggered |
+|--------|---------|------------|------------|-------------------|-----------------|
+| V2 Baseline (frozen) | 0.404 | 0.381 | 0.767 | 0% (importance proxy) | N/A |
+| **V2.1-Recon** | **0.422** | **0.396** | **0.833** | disabled | 2.8% (14/500) |
+| V2.1-Full | 0.410 | 0.385 | 0.800 | 1.6% (8/500) | 2.6% (13/500) |
+
+### 14.2 Key Findings
+
+1. **V2.1-Recon outperforms V2 on all metrics**: overall +1.8pp, answerable +1.5pp, abstention +6.6pp
+2. **V2.1-Full underperforms V2.1-Recon**: calibrated Gate intercepts 8/500 (6 answerable FP, 2 abstention TP), confirming audit finding that retrieval relevance != evidence sufficiency
+3. **Reconsolidation trigger rate is low (2.6-2.8%)**: only verification FAIL triggers updates; 13-14 updates out of 500 questions
+4. **Zero errors**: both runs completed with 0 API errors, checkpoint/resume verified
+
+### 14.3 By Category (V2.1-Recon vs V2.1-Full)
+
+| Category | n | V2.1-Recon | V2.1-Full |
+|----------|---|------------|-----------|
+| single-session-assistant | 56 | 0.839 | 0.821 |
+| single-session-user | 64 | 0.750 | 0.734 |
+| knowledge-update | 72 | 0.542 | 0.514 |
+| temporal-reasoning | 127 | 0.220 | 0.213 |
+| multi-session | 121 | 0.198 | 0.198 |
+| single-session-preference | 30 | 0.0* | 0.0* |
+| abstention | 30 | 0.833 | 0.800 |
+
+*single-session-preference = 0% is known evaluator limitation (token-overlap不适用于开放式偏好描述).
+
+V2.1-Recon >= V2.1-Full in every category, confirming Gate has uniformly negative impact.
+
+### 14.4 Efficiency
+
+| System | Prompt Tokens | Completion Tokens | Total | Avg Latency |
+|--------|--------------|-------------------|-------|-------------|
+| V2.1-Recon | 1,372,976 | 48,095 | 1,421,071 | 859ms |
+| V2.1-Full | 1,351,009 | 45,766 | 1,396,775 | 830ms |
+
+### 14.5 Conclusion
+
+V2.1-Recon is the best configuration. The reconsolidation infrastructure (even with low trigger rate) improves abstention accuracy by +6.6pp. The calibrated Gate hurts QA, validating the audit negative result. Full adaptive memory benefit requires a dedicated adaptive benchmark (LongMemEval-S is per-question independent).
+
+Detailed report: `docs/MEMFORGE_V21_REAL_EXPERIMENT.md`
+
